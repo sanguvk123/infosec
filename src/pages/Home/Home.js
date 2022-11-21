@@ -14,16 +14,26 @@ export default function (props) {
     let res = await Login(email, pw);
     if (res.statusCode !== 404) {
 
-      if (res.data.unit == 'superadmin')
-        navigate('/Superhome');
-      else if (res.data.unit == 'webadmin')
-        navigate('/wassignpage');
-      else if (res.data.unit == 'ftpadmin')
-        navigate('/fassignpage');
-      else if (res.data.unit == 'voipadmin')
-        navigate('/vassignpage');
-      else
-        navigate('/');
+      if (res.data.unit !== null) {
+        if (res.data.unit == 'superadmin')
+          navigate('/Superhome');
+        else if (res.data.unit == 'webadmin')
+          navigate('/wassignpage');
+        else if (res.data.unit == 'ftpadmin')
+          navigate('/fassignpage');
+        else if (res.data.unit == 'voipadmin')
+          navigate('/vassignpage');
+        else
+          navigate('/');
+
+      }
+      else {
+        navigate('/errorpage');
+
+
+      }
+
+
 
 
     }
