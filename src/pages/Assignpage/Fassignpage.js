@@ -4,9 +4,43 @@ import { AssignUserToRole, GetUsersAndRoles, GetRolesForUnit, RemoveUserToRole }
 import Button from 'react-bootstrap/Button';
 import './assignpage.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+} from './navbarelement';
+import Signout from "./signoutfunction";
+
+
+// function Signout() {
+//   const navigate = useNavigate();
+
+//   const navigateToLogOut = () => {
+//     localStorage.removeItem("User_id");
+//     localStorage.removeItem("User_unit");
+//     navigate('/');
+
+
+
+//   };
+
+//   return (
+//     <div>
+//       <Button onClick={(evt) => navigateToLogOut()} className="submitbutton">
+//         logout
+//       </Button>
+//     </div>
+//   );
+// }
 export default class Fassignpage extends React.Component {
 
+
+
   constructor(props) {
+
     super(props);
     this.state = {
       role: 'Role',
@@ -17,9 +51,16 @@ export default class Fassignpage extends React.Component {
     }
   }
 
+
+
+
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+
+
 
   handleSubmit = async () => {
     let res = await AssignUserToRole(this.state.role, this.state.user,);
@@ -59,6 +100,7 @@ export default class Fassignpage extends React.Component {
     });
   }
 
+
   render() {
     let { userList, users, roleList } = this.state;
     console.log(userList);
@@ -66,6 +108,36 @@ export default class Fassignpage extends React.Component {
 
     return (
       <>
+        <Nav>
+          <Bars />
+
+          <NavMenu>
+            <NavLink to='/about' activeStyle>
+              About
+            </NavLink>
+            <NavLink to='/events' activeStyle>
+              Events
+            </NavLink>
+            <NavLink to='/annual' activeStyle>
+              Annual Report
+            </NavLink>
+            <NavLink to='/team' activeStyle>
+              Teams
+            </NavLink>
+            <NavLink to='/blogs' activeStyle>
+              Blogs
+            </NavLink>
+            {/* <NavLink to='/sign-up' activeStyle>
+              Sign Up
+            </NavLink> */}
+            {/* Second Nav */}
+            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+          </NavMenu>
+          <NavBtn>
+            <Signout />
+            {/* <NavBtnLink onClick={this.navigateToLogOut}>Sign out</NavBtnLink> */}
+          </NavBtn>
+        </Nav>
         <div className="heading"> FTP Admin Page</div>
         <div className="master">
           <div className="user_role">
