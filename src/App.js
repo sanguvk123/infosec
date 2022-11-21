@@ -15,6 +15,7 @@ import Fassignpage from './pages/Assignpage/Fassignpage';
 import Addrole from './pages/Superuserhome/Addrole';
 import Makeadmin from './pages/Superuserhome/Makeadmin';
 import AssignTaskToRole from './pages/Superuserhome/Tasktorole';
+import ErrorOops from './pages/Errorpage/Oops';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/addrole" element={<Addrole />} />
         <Route path="/assigntasktorole" element={<AssignTaskToRole />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/erroroops" element={<ErrorOops />} />
 
       </Routes>
     </BrowserRouter>
