@@ -33,21 +33,14 @@ export default class Fassignpage extends React.Component {
               this.setState({ userList: foundUserEmails});
           }
       });
-      // GetRolesForUnit("VoipAdmin").then((res) => {
-      //   if(res && res.data && res.data.users) {
-      //       let roles = res.data.unitRoles;
-      //       let foundrolenames = roles.map(found => found.name);
-      //       this.setState({ roleList: foundrolenames});
-      //   }
-      // });
       GetRolesForUnit("FTPAdmin").then((res) => {
-        console.log('heloo737676376')
-        console.log(res.data.unitRoles);
+        console.log('heloo73767637rjirtehjrt6')
+        console.log(res.data);
         if (res && res.data && res.data.users) {
           let foundRoles = res.data.unitRoles;
           let foundRoleslist = foundRoles.map(found => found.name);
           // let foundUserRoles = foundRoles.map(foundRole => foundRole.role);
-          this.setState({ roleList: res.data.unitRoles });
+          this.setState({ roleList: foundRoleslist });
         }
       });
   }

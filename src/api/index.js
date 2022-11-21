@@ -61,11 +61,8 @@ export const AddRole = async (type, role) => {
 
 // Super user can chooses user to make Web/VoIP/FTP admins.
 export const MakeAdmin = async (user, type) => {
-    console.log(user);
     let MakeAdminUrl = 'http://localhost:3000/superAdmin/userAdminUnitAssignment';
     let res = await axios.post(MakeAdminUrl, {userName: user, adminUnitName: type});
-    console.log(res);
-    console.log("hello");
     return res;
 }
 
@@ -76,7 +73,7 @@ export const GetUsersAndRoles = async (unit) => {
 }
 
 export const GetRolesForUnit = async (unit) => {
-    let url = `http://localhost:3000/adminUnit/adminUnitInfo/VoipAdmin`;
+    let url = `http://localhost:3000/adminUnit/adminUnitInfo/${unit}`;
     console.log(unit);
     let res = await axios.get(url, { params: { unit: unit} });
     return res;
