@@ -15,6 +15,10 @@ export default function (props) {
         if(res.statusCode !== 404)
           navigate('/Superhome');
     };
+
+    const navigateToSignUp = () => {
+      navigate("signup");
+    };
     
     return (
       <div className="Auth-form-container">
@@ -41,15 +45,16 @@ export default function (props) {
                 placeholder="Enter password"
               />
             </div>
-            {/* Navigate to super user admin page, web/voip/ftp admin page accordingly */}
             <div className="d-grid gap-2 mt-3">
               <button onClick={navigateToSuperAdmin} type="submit" className="btn btn-primary">
                 Submit
               </button>
             </div>
-            <p className="forgot-password text-right mt-2">
-              <a href="#" onClick={navigate('/signup')}>Sign Up?</a>
-            </p>
+            <div className="d-grid gap-2 mt-3">
+              <button onClick={navigateToSignUp} type="submit" className="btn btn-primary">
+                Sign Up?
+              </button>
+            </div>
           </div>
         </form>
       </div>
