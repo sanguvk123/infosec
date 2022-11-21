@@ -1,7 +1,4 @@
-import React, { useState } from 'react'
-
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Login } from "../../api/index";
+import React from 'react'
 import { GetUserInfo} from "../../api/index";
 
 export default class BasicHome extends React.Component {
@@ -16,21 +13,52 @@ export default class BasicHome extends React.Component {
     }
 
     componentDidMount = () => {
-        let id = localStorage.removeItem("User_id");
-        let id1 = "637b2b2529817e85682317be";
-        console.log(id1);
-        GetUserInfo(id1).then((res) => {
-            if(res && res.data && res.data.roles) {
-                console.log(res);
+        let id = localStorage.getItem("User_id");
+        console.log(id);
+        GetUserInfo(id).then((res) => {
+            if(res && res.data) {
+                if(res.data.roles) {
+                    this.setState({ roles: res.data.roles });
+                }
+                if(res.data.operations) {
+                    this.setState({ operations: res.data.operations });
+                }
+                if(res.data.tasks) {
+                    this.setState({ tasks: res.data.tasks });
+                }
             }
         });
     }
 
     render() {
+        const { roles, operations, tasks } = this.state;
         return(
-        <>
-        Basic Home
-        </>
+        <div className="contain">
+            <div>
+                <h1>You belong to the roles listed below: </h1>
+                {
+                    roles.length && roles.map((role) => {
+                        return <h3>{role.name}</h3>
+                    })
+                }
+            </div>
+            <div>
+                <h1>Operations you can perform : </h1>
+                {
+                    operations.length && operations.map((operation) => {
+                        return <h3>{operation}</h3>
+                    })
+                }
+            </div>
+            <div>
+                <h1>Tasks you can perform : </h1>
+                {
+                    tasks.length && tasks.map((task) => {
+                        return <h3>{task}</h3>
+                    })
+                }
+            </div>
+        </div>
         );
     }
 }

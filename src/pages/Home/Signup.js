@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { SignUp } from "../../api/index";
 
 export default function Signup (props) {
@@ -9,7 +9,6 @@ export default function Signup (props) {
     const [pw, setPw] = useState("");
 
     const navigateToSuperAdmin = async (e) => {
-    // 👇️ navigate to /Wadmin
     e.preventDefault();
         let res = await SignUp(email, pw);
         if(res.statusCode !== 404)
@@ -17,7 +16,6 @@ export default function Signup (props) {
     };
     
     return (
-
       <div className="Auth-form-container">
         <form className="Auth-form">
           <div className="Auth-form-content">
@@ -42,7 +40,6 @@ export default function Signup (props) {
                 placeholder="Enter password"
               />
             </div>
-            {/* Navigate to super user admin page, web/voip/ftp admin page accordingly */}
             <div className="d-grid gap-2 mt-3">
               <button onClick={navigateToSuperAdmin} type="submit" className="btn btn-primary">
                 Submit

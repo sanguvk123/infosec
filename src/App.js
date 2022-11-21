@@ -49,7 +49,7 @@ function App() {
           <RequireAuth>   <AssignTaskToRole /> </RequireAuth>
         } />
         <Route path="/basichome" element={
-        <RequireAuth>   <BasicHome /> </RequireAuth>
+          <RequireAuth><BasicHome /></RequireAuth>
         } />
       </Routes>
     </BrowserRouter>
