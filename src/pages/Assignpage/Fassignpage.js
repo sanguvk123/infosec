@@ -21,7 +21,7 @@ export default class Fassignpage extends React.Component {
      }
   
     handleSubmit = async () => {
-        let res = await AssignUserToRole(this.state.role, this.state.user);
+        let res = await AssignUserToRole(this.state.role, this.state.user, );
         alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
     }
 
@@ -33,7 +33,7 @@ export default class Fassignpage extends React.Component {
               this.setState({ userList: foundUserEmails});
           }
       });
-      GetRolesForUnit("FTPAdmin").then((res) => {
+      GetRolesForUnit("ftpadmin").then((res) => {
         console.log('heloo73767637rjirtehjrt6')
         console.log(res.data);
         if (res && res.data && res.data.users) {
@@ -57,7 +57,9 @@ export default class Fassignpage extends React.Component {
           <div className="row">
           <div className="column left">
             <h2>Column 1</h2>
-            <p>Some text..</p>
+            {/* roleList.length && roleList.map(role => {
+                return <option value={role}>{role}</option>
+            }) */}
           </div>
           <div className="column right">
             <h2>Column 2</h2>
