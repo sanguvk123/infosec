@@ -1,19 +1,20 @@
 import React from "react";
 
-import { AssignUserToRole } from "../../api/index";
+import { AssignUserToRole, GetUsersAndRoles, GetRolesForUnit  } from "../../api/index";
 import './assignpage.css';
 import Button from 'react-bootstrap/Button';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 export default class Fassignpage extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            role: 'Role'
-        }
-        this.state = {
-            user: 'User'
-        }
+  constructor(props) {
+      super(props);
+      this.state = {
+          role: 'Role',
+          user: 'User',
+          userList: [],
+          roleList: [],
+          users:[],
+      }
     }
 
     handleChange(e) {
@@ -21,38 +22,69 @@ export default class Fassignpage extends React.Component {
      }
   
     handleSubmit = async () => {
-        
+        let res = await AssignUserToRole(this.state.role, this.state.user, );
         alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
-        let res = await AssignUserToRole(this.role, this.user);
-    //   event.preventDefault();
+    }
+
+    componentDidMount = () => {
+      GetUsersAndRoles().then((res) => {
+          if(res && res.data && res.data.users) {
+              let foundUsers = res.data.users;
+              let foundUserEmails = foundUsers.map(foundUser => foundUser.email);
+              this.setState({ userList: foundUserEmails});
+          }
+      });
+      GetRolesForUnit("webadmin").then((res) => {
+        if (res && res.data && res.data.users) {
+          let foundRoles = res.data.unitRoles;
+          let foundRoleslist = foundRoles.map(found => found.name);
+          this.setState({ roleList: foundRoleslist });
+          this.setState({ users: res.data.users });
+        }
+      });
     }
   
     render() {
+      let {userList, users, roleList} = this.state;
+      console.log(userList);
+      console.log(roleList);
+
       return (
         <div className="master">
           <div className="heading"> Web Admin Page</div>
           <div className="row">
-          <div className="column left">
-            <h2>Column 1</h2>
-            <p>Some text..</p>
+          <div className="App">
+            <table>
+              {
+                users.length && users.map(user => {
+                  return (
+                    <tr> {user.email || ""}
+                      {
+                        user && user.role && user.role.length > 1 && user.role.map(role => {
+                          return <th>{role.name || ""}</th>
+                        })
+                      }
+                    </tr>
+                  )
+                })
+              }
+            </table>
           </div>
-          <div className="column right">
-            <h2>Column 2</h2>
-            <p>Some text..</p>
           </div>
-          </div>
-        <div className="container">
-        Add Role to User?
+
+          <div className = "container">
+            Add Role to User?
             <form onSubmit={this.handleSubmit}>
             <label>
               <select 
               name = "role"
               value={this.state.role}
               onChange={this.handleChange.bind(this)}>
-                <option value="Role1">Role1</option>
-                <option value="Role2">Role2</option>
-                <option value="Role3">Role3</option>
-                <option value="Role4">Role4</option>
+                {
+                    roleList.length && roleList.map(role => {
+                        return <option value={role}>{role}</option>
+                    })
+                }
               </select>
             </label>
             <label>
@@ -60,18 +92,21 @@ export default class Fassignpage extends React.Component {
               name = "user"
               value={this.state.user} 
               onChange={this.handleChange.bind(this)}>
-                <option value="User1">User1</option>
-                <option value="User2">User2</option>
-                <option value="User3">User3</option>
-                <option value="User4">User4</option>
+                {
+                    userList.length && userList.map(user => {
+                        return <option value={user}>{user}</option>
+                    })
+                }
               </select>
             </label>
             <Button onClick={(evt) => this.handleSubmit()} variant="primary" size="lg">
                   Submit
             </Button>
-          </form>
+        </form>
         </div>
         </div>
+        
+        
       );
     }
   }

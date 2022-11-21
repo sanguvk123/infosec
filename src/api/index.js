@@ -37,8 +37,8 @@ export const Login = async (email, password) => {
     let res = await axios.post(loginUrl, { email: email, password: password });
     console.log(res)
     if (res && res.data && res.data.userId) {
-        localStorage.setItem('User_id', res.data.userId);
-        localStorage.setItem('User_unit', res.data.unit);
+        await localStorage.setItem('User_id', res.data.userId);
+        await localStorage.setItem('User_unit', res.data.unit);
     }
     localStorage.getItem('User_id');
     return res;

@@ -13,6 +13,8 @@ import Vassignpage from './pages/Assignpage/Vassignpage';
 import Fassignpage from './pages/Assignpage/Fassignpage';
 import Addrole from './pages/Superuserhome/Addrole';
 import Makeadmin from './pages/Superuserhome/Makeadmin';
+import AssignTaskToRole from './pages/Superuserhome/Tasktorole';
+import ErrorOops from './pages/Errorpage/Oops';
 
 function App() {
   let unit = localStorage.getItem('User_unit');
@@ -23,15 +25,52 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/superhome" element={localStorage.getItem('User_unit') && localStorage.getItem('User_unit') === "superadmin" ? <Superuserhome /> : <Navigate to="/" />} />
-        <Route path="/wassignpage" element={localStorage.getItem('User_unit') && localStorage.getItem('User_unit') === "webadmin" ? <Wassignpage /> : <Navigate to="/" />} />
-        <Route path="/vassignpage" element={localStorage.getItem('User_unit') && localStorage.getItem('User_unit') === "voipadmin" ? <Vassignpage /> : <Navigate to="/" />} />
-        <Route path="/fassignpage" element={localStorage.getItem('User_unit') && localStorage.getItem('User_unit') === "ftpadmin" ? <Fassignpage /> : <Navigate to="/" />} />
-        <Route path="/superhome/addrole" element={<Addrole />} />
-        <Route path="/superhome/makeadmin" element={<Makeadmin />} />
+        <Route path="/superhome" element={
+          <RequireAuth>    <Superuserhome /> </RequireAuth>
+        } />
+        <Route path="/wassignpage" element={
+          <RequireAuthw>    <Wassignpage /> </RequireAuthw>
+        } />
+        <Route path="/vassignpage" element={
+          <RequireAuthv>    <Vassignpage /> </RequireAuthv>
+        } />
+        <Route path="/fassignpage" element={
+          <RequireAuthf>    <Fassignpage /> </RequireAuthf>
+        } />
+        <Route path="/superhome/addrole" element={
+          <RequireAuth>    <Addrole /> </RequireAuth>
+        } />
+        <Route path="/superhome/makeadmin" element={
+          <RequireAuth>    <Makeadmin /> </RequireAuth>
+        } />
+        <Route path="/errorpage" element={<ErrorOops />} />
       </Routes>
     </BrowserRouter>
   )
+}
+
+
+function RequireAuth({ children }) {
+  let unit = localStorage.getItem('User_unit');
+  let userid = localStorage.getItem('User_id');
+  console.log('ekjejkejkjekejkejkejkejekjekkkkkkkkkkkkkkkkkkkkkkk');
+  console.log(unit);
+  return userid && unit === 'superadmin' ? children : <Navigate to="/" />;
+}
+function RequireAuthw({ children }) {
+  let unit = localStorage.getItem('User_unit');
+  let userid = localStorage.getItem('User_id');
+  return userid && unit === 'webadmin' ? children : <Navigate to="/" />;
+}
+function RequireAuthv({ children }) {
+  let unit = localStorage.getItem('User_unit');
+  let userid = localStorage.getItem('User_id');
+  return userid && unit === 'voipadmin' ? children : <Navigate to="/" />;
+}
+function RequireAuthf({ children }) {
+  let unit = localStorage.getItem('User_unit');
+  let userid = localStorage.getItem('User_id');
+  return userid && unit === 'ftpadmin' ? children : <Navigate to="/" />;
 }
 
 export default App;

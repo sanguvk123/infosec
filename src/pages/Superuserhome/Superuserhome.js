@@ -38,33 +38,31 @@ function Superuserhome() {
 
     return (
         <>
-            <div className="container">
-                <div className="vertical-center">
-                    <Button onClick={navigateToWadmin} variant="primary" size="lg">
-                        Log Into Web Admin
-                    </Button>{' '}
-                    <Button onClick={navigateToVadmin} variant="primary" size="lg">
-                        Log Into Voip Admin
-                    </Button>{' '}
-                    <Button onClick={navigateToFadmin} variant="primary" size="lg">
-                        Log Into FTP Admin
-                    </Button>{' '}
-
-                    <Button onClick={navigateToAddRole} size="lg">
-                        Add Role
-                    </Button>{' '}
-                    <Button onClick={navigateToMakeAdmin} size="lg">
-                        Make User admin of an unit
-                    </Button>{' '}
-
-                    <Button onClick={navigateToAssignTaskToRole} size="lg">
-                        Add tasks to Role
-                    </Button>{' '}
-
-                    <Button onClick={navigateToLogOut} size="lg">
-                        Logout
-                    </Button>{' '}
+            <div className="superhomebuttons">
+                <div className="heading">
+                    Super User Home
                 </div>
+                <Button onClick={navigateToWadmin} className="block">
+                    Log Into Web Admin
+                </Button>{' '}
+                <Button onClick={navigateToVadmin} className="block">
+                    Log Into Voip Admin
+                </Button>{' '}
+                <Button onClick={navigateToFadmin} className="block">
+                    Log Into FTP Admin
+                </Button>{' '}
+                <Button onClick={navigateToAddRole} className="block">
+                    Add Role
+                </Button>{' '}
+                <Button onClick={navigateToMakeAdmin} className="block">
+                    Make User admin of an unit
+                </Button>{' '}
+                <Button onClick={navigateToAssignTaskToRole} className="block">
+                    Add tasks to Role
+                </Button>{' '}
+                <Button onClick={navigateToLogOut} className="block">
+                    Logout
+                </Button>{' '}
             </div>
 
         </>
