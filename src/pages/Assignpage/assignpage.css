@@ -1,0 +1,62 @@
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin-right: 20%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  input[type=submit] {
+    width: 50%;
+    background-color: darkblue;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+
+  .container{
+    align-items: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .master{
+    margin: auto;
+    width: 70%;
+  }
+
+  .column {
+    float: left;
+    width: 50%;
+    background-color: beige;
+    border-color: black;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    border: #45a049;
+    border-color: black;
+  }
+
+  .heading{
+    margin: 30px;
+    font-size: 30px;
+    text-align: center;
+  }

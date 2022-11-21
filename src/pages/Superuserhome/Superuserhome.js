@@ -9,28 +9,26 @@ function Superuserhome() {
     const navigate = useNavigate();
 
     const navigateToWadmin = () => {
-    // 👇️ navigate to /Wadmin
         navigate('/wassignpage');
     };
 
     const navigateToVadmin = () => {
-    // 👇️ navigate to /Wadmin
         navigate('/vassignpage');
     };
 
     const navigateToFadmin = () => {
-    // 👇️ navigate to /Wadmin
         navigate('/fassignpage');
     };
 
     const navigateToAddRole = () => {
-    // 👇️ navigate to /Wadmin
         navigate('/addrole');
     };
 
     const navigateToMakeAdmin = () => {
-    // 👇️ navigate to /Wadmin
         navigate('/makeadmin');
+    };
+    const navigateToAssignTaskToRole = () => {
+        navigate('/assigntasktorole');
     };
 
   return (
@@ -51,7 +49,11 @@ function Superuserhome() {
             Add Role
             </Button>{' '}
             <Button onClick={navigateToMakeAdmin} size="lg">
-            Add Role
+            Make User admin of an unit
+            </Button>{' '}
+
+            <Button onClick={navigateToAssignTaskToRole} size="lg">
+            Add tasks to Role
             </Button>{' '}
             </div>
         </div>

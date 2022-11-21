@@ -20,15 +20,32 @@ export const Post = async (url, data) => {
 
 // Sign up
 export const Signup = async (email, password) => {
-    let signupUrl = "";
-    let res = await Post(signupUrl, {email: email, password: password});
+    let signupUrl = "http://localhost:3000/user/signup";
+    let res = await axios.post(signupUrl, {email: email, password: password});
+    console.log(res)
+    if(res && res.data && res.data.userId) {
+        localStorage.setItem('User_id', res.data.userId);
+    }
+    let t = localStorage.getItem('User_id');
+    return res;
+}
+
+// Log In
+export const Login = async (email, password) => {
+    let signupUrl = "http://localhost:3000/user/login";
+    let res = await axios.post(signupUrl, {email: email, password: password});
+    console.log(res)
+    if(res && res.data && res.data.userId) {
+        localStorage.setItem('User_id', res.data.userId);
+    }
+    let t = localStorage.getItem('User_id');
     return res;
 }
 
 
 // Web/VoIP/FTP Admins can assign user to roles
 export const AssignUserToRole = async (role, user) => {
-    let assignUserToRoleUrl = "";
+    let assignUserToRoleUrl = "http://localhost:3000/adminUnit/adminUnitInfo/userRoleAssignment";
     let res = await Post(assignUserToRoleUrl, {role: role, user: user});
     return res;
 }
@@ -44,7 +61,23 @@ export const AddRole = async (type, role) => {
 
 // Super user can chooses user to make Web/VoIP/FTP admins.
 export const MakeAdmin = async (type, user) => {
-    let MakeAdminUrl = "";
-    let res = await Post(MakeAdminUrl, {type: type, user: user});
+    console.log(user);
+    let MakeAdminUrl = 'http://localhost:3000/superAdmin/userAdminUnitAssignment';
+    let res = await axios.post(MakeAdminUrl, {userName: user, adminUnitName: type});
+    console.log(res);
+    console.log("hello");
+    return res;
+}
+
+export const GetUsersAndRoles = async (unit) => {
+    let url = `http://localhost:3000/adminUnit/adminUnitInfo/${unit}`;
+    let res = await axios.get(url, { params: { unit: unit} });
+    console.log(res);
+    return res;
+}
+
+export const AssignTaskToRole = async (role, task) => {
+    let assignTaskToRoleUrl = "";
+    let res = await Post(assignTaskToRoleUrl, {role: role, task: task});
     return res;
 }

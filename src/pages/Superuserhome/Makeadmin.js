@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MakeAdmin } from "../../api/index";
+import { MakeAdmin, GetUsersAndRoles } from "../../api/index";
 
 import {Routes, Route, useNavigate} from 'react-router-dom';
 export default class Makeadmin extends React.Component {
@@ -8,10 +8,9 @@ export default class Makeadmin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            role: 'Type'
-        }
-        this.state = {
-            user: 'User'
+            type: 'Type',
+            user: "User",
+            userList: []
         }
     }
 
@@ -21,11 +20,24 @@ export default class Makeadmin extends React.Component {
   
     handleSubmit = async () => {
         alert('User ' + this.state.user + ' is made ' + this.state.type + ' admin');
-        let res = await MakeAdmin(this.role, this.user);
+        let res = await MakeAdmin(this.user, this.type);
+        console.log(res);
     //   event.preventDefault();
+    }
+
+    componentDidMount = () => {
+        GetUsersAndRoles().then((res) => {
+            console.log(res);
+            if(res && res.data && res.data.users) {
+                let foundUsers = res.data.users;
+                let foundUserEmails = foundUsers.map(foundUser => foundUser.email);
+                this.setState({ userList: foundUserEmails });
+            }
+        });
     }
   
     render() {
+      let {userList} = this.state;
       return (
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -33,9 +45,9 @@ export default class Makeadmin extends React.Component {
             name = "type"
             value={this.state.type}
             onChange={this.handleChange.bind(this)}>
-              <option value="Web Admin">Web Admin</option>
-              <option value="VoIP Admin">VoIP Admin</option>
-              <option value="FTP Admin">FTP Admin</option>
+              <option value="webadmin">Web Admin</option>
+              <option value="voipadmin">VoIP Admin</option>
+              <option value="ftpadmin">FTP Admin</option>
             </select>
           </label>
           <label>
@@ -43,10 +55,11 @@ export default class Makeadmin extends React.Component {
             name = "user"
             value={this.state.user} 
             onChange={this.handleChange.bind(this)}>
-              <option value="User1">User1</option>
-              <option value="User2">User2</option>
-              <option value="User3">User3</option>
-              <option value="User4">User4</option>
+                {
+                    userList.length && userList.map(user => {
+                        return <option value={user}>{user}</option>
+                    })
+                }
             </select>
           </label>
           <input type="submit" value="Submit" />

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { AssignUserToRole } from "../../api/index";
-import './assignpage.css';
+import { AssignTaskToRole } from "../../api/index";
+import '../Assignpage/assignpage.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-export default class Fassignpage extends React.Component {
+export default class TaskToRole extends React.Component {
 
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ export default class Fassignpage extends React.Component {
             role: 'Role'
         }
         this.state = {
-            user: 'User'
+            task: 'Task'
         }
     }
 
@@ -20,27 +20,18 @@ export default class Fassignpage extends React.Component {
      }
   
     handleSubmit = async () => {
-        alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
-        let res = await AssignUserToRole(this.role, this.user);
+        alert('Role ' + this.state.role + ' is assigned to ' + this.state.task);
+        let res = await AssignTaskToRole(this.role, this.task);
     //   event.preventDefault();
     }
   
     render() {
       return (
+
         <div className="master">
-          <div className="heading"> VoIP Admin Page</div>
-          <div className="row">
-          <div className="column left">
-            <h2>Column 1</h2>
-            <p>Some text..</p>
-          </div>
-          <div className="column right">
-            <h2>Column 2</h2>
-            <p>Some text..</p>
-          </div>
-          </div>
-        <div className="container">
-        Add Role to User?
+          <div className="heading"> Assign Tasks to role</div>
+          <div className="container">
+          Add Task to Role?
             <form onSubmit={this.handleSubmit}>
             <label>
               <select 
@@ -55,13 +46,13 @@ export default class Fassignpage extends React.Component {
             </label>
             <label>
               <select 
-              name = "user"
-              value={this.state.user} 
+              name = "Task"
+              value={this.state.Task} 
               onChange={this.handleChange.bind(this)}>
-                <option value="User1">User1</option>
-                <option value="User2">User2</option>
-                <option value="User3">User3</option>
-                <option value="User4">User4</option>
+                <option value="Task1">Task1</option>
+                <option value="Task2">Task2</option>
+                <option value="Task3">Task3</option>
+                <option value="Task4">Task4</option>
               </select>
             </label>
             <p>
