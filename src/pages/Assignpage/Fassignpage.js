@@ -1,6 +1,7 @@
 import React from "react";
 
 import { AssignUserToRole, GetUsersAndRoles } from "../../api/index";
+import Button from 'react-bootstrap/Button';
 import './assignpage.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 export default class Fassignpage extends React.Component {
@@ -33,8 +34,8 @@ export default class Fassignpage extends React.Component {
               let foundUsers = res.data.users;
               let foundRoles = res.data.roles;
               let foundUserEmails = foundUsers.map(foundUser => foundUser.email);
-              let foundUserRoles = foundRoles.map(foundRole => foundRole.role);
-              this.setState({ userList: foundUserEmails, roleList: foundUserRoles});
+              // let foundUserRoles = foundRoles.map(foundRole => foundRole.role);
+              this.setState({ userList: foundUserEmails});
           }
       });
   }
@@ -43,6 +44,8 @@ export default class Fassignpage extends React.Component {
       let {userList} = this.state;
       let {roleList} = this.state;
       console.log(userList);
+      console.log(roleList);
+
       return (
         <div className="master">
           <div className="heading"> FTP Admin Page</div>
@@ -84,9 +87,9 @@ export default class Fassignpage extends React.Component {
                 }
               </select>
             </label>
-            <p>
-              <input type="submit" value="Submit" />
-            </p>
+            <Button onClick={(evt) => this.handleSubmit()} variant="primary" size="lg">
+                  Submit
+            </Button>
         </form>
         </div>
         </div>

@@ -48,7 +48,7 @@ export default function (props) {
               </button>
             </div>
             <p className="forgot-password text-right mt-2">
-              Sign Up <a href="#">password?</a>
+              <a href="#" onClick={navigate('/signup')}>Sign Up?</a>
             </p>
           </div>
         </form>

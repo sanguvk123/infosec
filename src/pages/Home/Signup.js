@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import { Signup } from "../../api/index";
+import { SignUp } from "../../api/index";
 
-export default function (props) {
+export default function Signup (props) {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [pw, setPw] = useState("");
@@ -11,7 +11,7 @@ export default function (props) {
     const navigateToSuperAdmin = async (e) => {
     // 👇️ navigate to /Wadmin
     e.preventDefault();
-        let res = await Signup(email, pw);
+        let res = await SignUp(email, pw);
         if(res.statusCode !== 404)
           navigate('/Superhome');
     };

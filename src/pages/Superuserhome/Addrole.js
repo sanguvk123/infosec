@@ -1,6 +1,7 @@
 import React from "react";
 
 import { AddRole } from "../../api/index";
+import Button from 'react-bootstrap/Button';
 
 import {Routes, Route, useNavigate} from 'react-router-dom';
 export default class Addrole extends React.Component {
@@ -8,27 +9,27 @@ export default class Addrole extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: '0'
-        }
-        this.state = {
+            type: 'Type',
             role: 'Role name'
         }
     }
 
     handleChange(e) {
+        console.log(e.target);
         this.setState({ [e.target.name] : e.target.value });
-     }
+    }
   
     handleSubmit = async (e) => {
-        this.setState({ [e.target.role] : e.target.value });
+        this.setState({ [e.target.name] : e.target.value });
+        let res = await AddRole(this.state.type, this.state.role);
         alert('Role ' + this.state.role + ' added to ' + this.state.type + ' admin.');
-        let res = await AddRole(this.type, this.role);
     //   event.preventDefault();
     }
   
     render() {
+      this.handleChange.bind(this);
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <label>
             <select 
             name = "type"
@@ -42,14 +43,16 @@ export default class Addrole extends React.Component {
           <label>
             <input
                 type="text"
-                value={this.state.text}
-                // this onchange not working
-                onChange={this.handleChange}
+                name="role"
+                value={this.state.role}
+                onChange={(evt) => this.handleChange(evt)}
                 className="form-control mt-1"
                 placeholder="Enter Role"
             />
           </label>
-          <input type="submit" value="Submit" />
+          <Button onClick={(evt) => this.handleSubmit(evt)} variant="primary" size="lg">
+                Submit
+          </Button>
         </form>
       );
     }

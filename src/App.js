@@ -29,7 +29,7 @@ function App() {
         <Route path="/makeadmin" element={<Makeadmin />} />
         <Route path="/addrole" element={<Addrole />} />
         <Route path="/assigntasktorole" element={<AssignTaskToRole />} />
-        <Route path="/signup" component={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
 
       </Routes>
     </BrowserRouter>

@@ -19,26 +19,26 @@ export const Post = async (url, data) => {
 
 
 // Sign up
-export const Signup = async (email, password) => {
+export const SignUp = async (email, password) => {
     let signupUrl = "http://localhost:3000/user/signup";
     let res = await axios.post(signupUrl, {email: email, password: password});
     console.log(res)
     if(res && res.data && res.data.userId) {
         localStorage.setItem('User_id', res.data.userId);
     }
-    let t = localStorage.getItem('User_id');
+    localStorage.getItem('User_id');
     return res;
 }
 
 // Log In
 export const Login = async (email, password) => {
-    let signupUrl = "http://localhost:3000/user/login";
-    let res = await axios.post(signupUrl, {email: email, password: password});
+    let loginUrl = "http://localhost:3000/user/login";
+    let res = await axios.post(loginUrl, {email: email, password: password});
     console.log(res)
     if(res && res.data && res.data.userId) {
         localStorage.setItem('User_id', res.data.userId);
     }
-    let t = localStorage.getItem('User_id');
+    localStorage.getItem('User_id');
     return res;
 }
 
@@ -53,14 +53,14 @@ export const AssignUserToRole = async (role, user) => {
 
 // Super user adds roles
 export const AddRole = async (type, role) => {
-    let AddRoleUrl = "";
-    let res = await Post(AddRoleUrl, {type: type, role: role});
+    let AddRoleUrl = "http://localhost:3000/superAdmin/roleAdminUnitAssignment";
+    let res = await axios.post(AddRoleUrl, {adminUnitName: type, roleName: role});
     return res;
 }
 
 
 // Super user can chooses user to make Web/VoIP/FTP admins.
-export const MakeAdmin = async (type, user) => {
+export const MakeAdmin = async (user, type) => {
     console.log(user);
     let MakeAdminUrl = 'http://localhost:3000/superAdmin/userAdminUnitAssignment';
     let res = await axios.post(MakeAdminUrl, {userName: user, adminUnitName: type});
@@ -72,7 +72,6 @@ export const MakeAdmin = async (type, user) => {
 export const GetUsersAndRoles = async (unit) => {
     let url = `http://localhost:3000/adminUnit/adminUnitInfo/${unit}`;
     let res = await axios.get(url, { params: { unit: unit} });
-    console.log(res);
     return res;
 }
 

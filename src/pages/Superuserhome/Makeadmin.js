@@ -1,8 +1,8 @@
 import React from "react";
 
 import { MakeAdmin, GetUsersAndRoles } from "../../api/index";
+import Button from 'react-bootstrap/Button';
 
-import {Routes, Route, useNavigate} from 'react-router-dom';
 export default class Makeadmin extends React.Component {
 
     constructor(props) {
@@ -19,10 +19,9 @@ export default class Makeadmin extends React.Component {
      }
   
     handleSubmit = async () => {
+        let res = await MakeAdmin(this.state.user, this.state.type);
         alert('User ' + this.state.user + ' is made ' + this.state.type + ' admin');
-        let res = await MakeAdmin(this.user, this.type);
         console.log(res);
-    //   event.preventDefault();
     }
 
     componentDidMount = () => {
@@ -39,7 +38,7 @@ export default class Makeadmin extends React.Component {
     render() {
       let {userList} = this.state;
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <label>
             <select 
             name = "type"
@@ -62,7 +61,9 @@ export default class Makeadmin extends React.Component {
                 }
             </select>
           </label>
-          <input type="submit" value="Submit" />
+          <Button onClick={(evt) => this.handleSubmit()} variant="primary" size="lg">
+                Submit
+          </Button>
         </form>
       );
     }

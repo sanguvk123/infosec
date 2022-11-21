@@ -30,6 +30,10 @@ function Superuserhome() {
     const navigateToAssignTaskToRole = () => {
         navigate('/assigntasktorole');
     };
+    const navigateToLogOut = () => {
+        localStorage.removeItem("User_id");
+        navigate('/');
+    };
 
   return (
     <>
@@ -54,6 +58,10 @@ function Superuserhome() {
 
             <Button onClick={navigateToAssignTaskToRole} size="lg">
             Add tasks to Role
+            </Button>{' '}
+
+            <Button onClick={navigateToLogOut} size="lg">
+            Logout
             </Button>{' '}
             </div>
         </div>

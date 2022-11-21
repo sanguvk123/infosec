@@ -2,6 +2,7 @@ import React from "react";
 
 import { AssignUserToRole } from "../../api/index";
 import './assignpage.css';
+import Button from 'react-bootstrap/Button';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 export default class Fassignpage extends React.Component {
 
@@ -65,9 +66,9 @@ export default class Fassignpage extends React.Component {
                 <option value="User4">User4</option>
               </select>
             </label>
-            <p>
-              <input type="submit" value="Submit" />
-            </p>
+            <Button onClick={(evt) => this.handleSubmit()} variant="primary" size="lg">
+                  Submit
+            </Button>
           </form>
         </div>
         </div>
