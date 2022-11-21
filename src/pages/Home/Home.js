@@ -12,31 +12,43 @@ export default function (props) {
     // 👇️ navigate to /Wadmin
     e.preventDefault();
     let res = await Login(email, pw);
-    if (res.statusCode !== 404) {
+    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+    console.log(res);
+    if (res !== "Wrong email or password") {
+      if (res.statusCode !== 500) {
 
-      if (res.data.unit !== null) {
-        if (res.data.unit == 'superadmin')
-          navigate('/Superhome');
-        else if (res.data.unit == 'webadmin')
-          navigate('/wassignpage');
-        else if (res.data.unit == 'ftpadmin')
-          navigate('/fassignpage');
-        else if (res.data.unit == 'voipadmin')
-          navigate('/vassignpage');
-        else
-          navigate('/');
+        if (res.data.unit !== null) {
+          if (res.data.unit == 'superadmin')
+            navigate('/Superhome');
+          else if (res.data.unit == 'webadmin')
+            navigate('/wassignpage');
+          else if (res.data.unit == 'ftpadmin')
+            navigate('/fassignpage');
+          else if (res.data.unit == 'voipadmin')
+            navigate('/vassignpage');
+          else
+            navigate('/');
+
+        }
+        else {
+          navigate('/errorpage');
+
+
+        }
+
+
+
+
+      } else {
+        if (res.statusCode !== null)
+          alert('ERROR CODE: ' + res.statusCode + ':' + res.data.error);
 
       }
-      else {
-        navigate('/errorpage');
 
-
-      }
-
-
-
-
+    } else {
+      alert("Wrong username or password")
     }
+
 
   };
 
