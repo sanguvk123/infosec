@@ -34,28 +34,60 @@ export const SignUp = async (email, password) => {
 // Log In
 export const Login = async (email, password) => {
     let loginUrl = "http://localhost:3000/user/login";
-    let res = await axios.post(loginUrl, { email: email, password: password });
-    console.log(res)
-    if (res && res.data && res.data.userId) {
-        await localStorage.setItem('User_id', res.data.userId);
-        await localStorage.setItem('User_unit', res.data.unit);
+    try {
+
+        let res = await axios.post(loginUrl, { email: email, password: password });
+        console.log('error in loginnnnnnnnnnnnnnnnnnn3333333333333ddddddddddddddddd333');
+        console.log(res)
+        if (res && res.data && res.data.userId) {
+            await localStorage.setItem('User_id', res.data.userId);
+            await localStorage.setItem('User_unit', res.data.unit);
+        }
+        localStorage.getItem('User_id');
+        return res;
+
+    } catch (e) {
+        console.log('error in loginnnnnnnnnnnnnnnnnnn3333333333333333');
+        return "Wrong email or password";
     }
-    localStorage.getItem('User_id');
-    return res;
+
 }
 
 
 // Web/VoIP/FTP Admins can assign user to roles
 export const AssignUserToRole = async (role, user) => {
-    let assignUserToRoleUrl = "http://localhost:3000/adminUnit/userRoleAssignment";
-    let res = await axios.post(assignUserToRoleUrl, { roleName: role, userName: user, userId: localStorage.getItem('User_id') });
-    return res;
+    try {
+        let assignUserToRoleUrl = "http://localhost:3000/adminUnit/userRoleAssignment";
+        let res = await axios.post(assignUserToRoleUrl, { roleName: role, userName: user, userId: localStorage.getItem('User_id') }).catch(err => {
+            if (err.response.status === 500) {
+                throw err;
+            }
+            throw err;
+        });
+        return res;
+
+    } catch (e) {
+        return e;
+    }
+
 }
 
 export const RemoveUserToRole = async (role, user) => {
     let removeUserToRoleUrl = "http://localhost:3000/adminUnit/userRoleRemoval";
-    let res = await axios.post(removeUserToRoleUrl, { roleName: role, userName: user, userId: localStorage.getItem('User_id') });
-    return res;
+    try {
+        let res = await axios.post(removeUserToRoleUrl, { roleName: role, userName: user, userId: localStorage.getItem('User_id') }).catch(err => {
+            if (err.response.status === 500) {
+                throw err;
+            }
+            throw err;
+        });
+        return res;
+
+    } catch (e) {
+        return e;
+    }
+
+
 }
 
 
@@ -89,7 +121,7 @@ export const GetRolesForUnit = async (unit) => {
 
 export const AssignTaskToRole = async (role, task) => {
     let assignTaskToRoleUrl = "http://localhost:3000/superAdmin/roleTaskAssignment";
-    let res = await Post(assignTaskToRoleUrl, {roleName: role, taskName: task});
+    let res = await Post(assignTaskToRoleUrl, { roleName: role, taskName: task });
     return res;
 }
 
