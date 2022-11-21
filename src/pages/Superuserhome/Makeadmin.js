@@ -21,7 +21,6 @@ export default class Makeadmin extends React.Component {
     handleSubmit = async () => {
         let res = await MakeAdmin(this.state.user, this.state.type);
         alert('User ' + this.state.user + ' is made ' + this.state.type + ' admin');
-        console.log(res);
     }
 
     componentDidMount = () => {

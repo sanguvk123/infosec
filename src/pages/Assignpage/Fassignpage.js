@@ -21,7 +21,7 @@ export default class Fassignpage extends React.Component {
      }
   
     handleSubmit = async () => {
-        let res = await AssignUserToRole(this.role, this.user);
+        let res = await AssignUserToRole(this.state.role, this.state.user);
         alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
     }
 

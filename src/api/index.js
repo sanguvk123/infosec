@@ -45,8 +45,8 @@ export const Login = async (email, password) => {
 
 // Web/VoIP/FTP Admins can assign user to roles
 export const AssignUserToRole = async (role, user) => {
-    let assignUserToRoleUrl = "http://localhost:3000/adminUnit/adminUnitInfo/userRoleAssignment";
-    let res = await axios.post(assignUserToRoleUrl, {role: role, user: user});
+    let assignUserToRoleUrl = "http://localhost:3000/adminUnit/userRoleAssignment";
+    let res = await axios.post(assignUserToRoleUrl, {roleName: role, userName: user});
     return res;
 }
 
