@@ -75,7 +75,7 @@ export default class Fassignpage extends React.Component {
           <div className = "container">
             Add Role to User?
             <form onSubmit={this.handleSubmit}>
-            <label>
+            <label className="labels">
               <select 
               name = "role"
               value={this.state.role}
@@ -87,7 +87,7 @@ export default class Fassignpage extends React.Component {
                 }
               </select>
             </label>
-            <label>
+            <label className="labels">
               <select 
               name = "user"
               value={this.state.user} 
@@ -99,9 +99,12 @@ export default class Fassignpage extends React.Component {
                 }
               </select>
             </label>
-            <Button onClick={(evt) => this.handleSubmit()} variant="primary" size="lg">
+            <div className="labels">
+            <Button onClick={(evt) => this.handleSubmit()} className="submitbutton">
                   Submit
             </Button>
+            </div>
+            
         </form>
         </div>
         </div>

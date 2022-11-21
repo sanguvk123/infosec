@@ -50,62 +50,61 @@ export default class Fassignpage extends React.Component {
       console.log(roleList);
 
       return (
+        <>
+        <div className="heading"> FTP Admin Page</div>
         <div className="master">
-          <div className="heading"> FTP Admin Page</div>
-          <div className="row">
-          <div className="App">
-            <table>
-              {
-                users.length && users.map(user => {
-                  return (
-                    <tr> {user.email || ""}
-                      {
-                        user && user.role && user.role.length > 1 && user.role.map(role => {
-                          return <th>{role.name || ""}</th>
-                        })
-                      }
-                    </tr>
-                  )
-                })
-              }
-            </table>
+          <div className="user_role">
+            <div className="one_user">
+              <table>
+                {
+                  users.length && users.map(user => {
+                    return (
+                      <tr> {user.email || ""}
+                        {
+                          user && user.role && user.role.length > 1 && user.role.map(role => {
+                            return <th>{role.name || ""}</th>
+                          })
+                        }
+                      </tr>
+                    )
+                  })
+                }
+              </table>
+            </div>
           </div>
-          </div>
+        </div>
 
-          <div className = "container">
-            Add Role to User?
-            <form onSubmit={this.handleSubmit}>
-            <label>
-              <select 
-              name = "role"
-              value={this.state.role}
-              onChange={this.handleChange.bind(this)}>
-                {
-                    roleList.length && roleList.map(role => {
-                        return <option value={role}>{role}</option>
-                    })
-                }
-              </select>
-            </label>
-            <label>
-              <select 
-              name = "user"
-              value={this.state.user} 
-              onChange={this.handleChange.bind(this)}>
-                {
-                    userList.length && userList.map(user => {
-                        return <option value={user}>{user}</option>
-                    })
-                }
-              </select>
-            </label>
-            <Button onClick={(evt) => this.handleSubmit()} variant="primary" size="lg">
+        <div className = "container">
+          Add Role to User?
+          <form onSubmit={this.handleSubmit}>
+          <label className="labels">
+            <select name = "role" value={this.state.role}
+            onChange={this.handleChange.bind(this)}>
+              {
+                  roleList.length && roleList.map(role => {
+                      return <option value={role}>{role}</option>
+                  })
+              }
+            </select>
+          </label>
+          <label className="labels">
+            <select name = "user" value={this.state.user} 
+            onChange={this.handleChange.bind(this)}>
+              {
+                  userList.length && userList.map(user => {
+                      return <option value={user}>{user}</option>
+                  })
+              }
+            </select>
+          </label>
+          <div className="labels">
+            <Button onClick={(evt) => this.handleSubmit()} className="submitbutton">
                   Submit
             </Button>
-        </form>
+          </div>
+          </form>
         </div>
-        </div>
-        
+        </>
         
       );
     }
