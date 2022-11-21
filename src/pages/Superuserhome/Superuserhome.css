@@ -1,7 +1,24 @@
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+.superhomebuttons{
+  margin: 10px;
+  width: 95%;
+  background-color: bisque;
+  align-items: center;
+}
+.button-1{
+  padding: 5px;
+  margin: 10px;
+  width: 95%;
+  background-color: bisque;
+}
+
+.block {
+  width: 100%;
+  border: none;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
 }
