@@ -60,17 +60,17 @@ function RequireAuth({ children }) {
 function RequireAuthw({ children }) {
   let unit = localStorage.getItem('User_unit');
   let userid = localStorage.getItem('User_id');
-  return userid && unit === 'webadmin' ? children : <Navigate to="/errorpage" />;
+  return userid && unit === 'webadmin' || 'superadmin' ? children : <Navigate to="/errorpage" />;
 }
 function RequireAuthv({ children }) {
   let unit = localStorage.getItem('User_unit');
   let userid = localStorage.getItem('User_id');
-  return userid && unit === 'voipadmin' ? children : <Navigate to="/errorpage" />;
+  return userid && unit === 'voipadmin' || 'superadmin' ? children : <Navigate to="/errorpage" />;
 }
 function RequireAuthf({ children }) {
   let unit = localStorage.getItem('User_unit');
   let userid = localStorage.getItem('User_id');
-  return userid && unit === 'ftpadmin' ? children : <Navigate to="/errorpage" />;
+  return userid && unit === 'ftpadmin'  || 'superadmin' ? children : <Navigate to="/errorpage" />;
 }
 
 export default App;

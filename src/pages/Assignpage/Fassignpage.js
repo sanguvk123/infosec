@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AssignUserToRole, GetUsersAndRoles, GetRolesForUnit } from "../../api/index";
+import { AssignUserToRole, GetUsersAndRoles, GetRolesForUnit,RemoveUserToRole } from "../../api/index";
 import Button from 'react-bootstrap/Button';
 import './assignpage.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
@@ -31,9 +31,12 @@ export default class Fassignpage extends React.Component {
   }
 
   handleRemove = async () => {
-    let res = await AssignUserToRole(this.state.role, this.state.user,);
+    let res = await RemoveUserToRole(this.state.role, this.state.user,);
     console.log(res);
-    alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
+    if (res.status == 200)
+      alert('Role ' + this.state.role + ' is removed from ' + this.state.user);
+    else
+      alert('Failure: ' + res.data.message == null ? "Reason unknown" : res.data.message);
   }
   componentDidMount = () => {
     GetUsersAndRoles().then((res) => {

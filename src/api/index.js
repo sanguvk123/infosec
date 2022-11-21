@@ -52,6 +52,12 @@ export const AssignUserToRole = async (role, user) => {
     return res;
 }
 
+export const RemoveUserToRole = async (role, user) => {
+    let removeUserToRoleUrl = "http://localhost:3000/adminUnit/userRoleRemoval";
+    let res = await axios.post(removeUserToRoleUrl, { roleName: role, userName: user, userId: localStorage.getItem('User_id') });
+    return res;
+}
+
 
 // Super user adds roles
 export const AddRole = async (type, role) => {
