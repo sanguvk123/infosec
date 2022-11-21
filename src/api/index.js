@@ -80,7 +80,20 @@ export const GetRolesForUnit = async (unit) => {
 }
 
 export const AssignTaskToRole = async (role, task) => {
-    let assignTaskToRoleUrl = "";
-    let res = await Post(assignTaskToRoleUrl, {role: role, task: task});
+    let assignTaskToRoleUrl = "http://localhost:3000/superAdmin/roleTaskAssignment";
+    let res = await Post(assignTaskToRoleUrl, {roleName: role, taskName: task});
+    return res;
+}
+
+
+export const GetRoles = async () => {
+    let url = `http://localhost:3000/superAdmin/getRoles`;
+    let res = await axios.get(url);
+    return res;
+}
+
+export const GetTasks = async () => {
+    let url = `http://localhost:3000/superAdmin/getTasks`;
+    let res = await axios.get(url);
     return res;
 }

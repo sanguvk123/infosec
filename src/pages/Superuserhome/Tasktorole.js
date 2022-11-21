@@ -1,17 +1,19 @@
 import React from "react";
 
-import { AssignTaskToRole } from "../../api/index";
-import '../Assignpage/assignpage.css';
+import { AssignTaskToRole, GetTasks, GetRoles} from "../../api/index";
+import Button from 'react-bootstrap/Button';
+import './Superuserhome.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-export default class TaskToRole extends React.Component {
+export default class Fassignpage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            role: 'Role'
-        }
-        this.state = {
-            task: 'Task'
+            role: 'Role',
+            task: 'Task',
+            taskList: [],
+            roleList: [],
+            tasks:[],
         }
     }
 
@@ -20,46 +22,54 @@ export default class TaskToRole extends React.Component {
      }
   
     handleSubmit = async () => {
-        alert('Role ' + this.state.role + ' is assigned to ' + this.state.task);
-        let res = await AssignTaskToRole(this.role, this.task);
-    //   event.preventDefault();
+        let res = await AssignTaskToRole(this.state.role, this.state.task, );
+        alert('Task ' + this.state.task + ' is assigned to ' + this.state.role);
+    }
+
+    componentDidMount = () => {
+      GetRoles().then((res) => {
+          if(res && res.data) {
+              let roles = res.data;
+              console.log(roles);
+              // let foundroles = roles.map(role => role.email);
+              // this.setState({ roleList: foundroles});
+          }
+      });
     }
   
     render() {
-      return (
+      let {taskList, tasks, roleList, task} = this.state;
 
-        <div className="master">
-          <div className="heading"> Assign Tasks to role</div>
-          <div className="container">
-          Add Task to Role?
-            <form onSubmit={this.handleSubmit}>
-            <label>
-              <select 
-              name = "role"
-              value={this.state.role}
-              onChange={this.handleChange.bind(this)}>
-                <option value="Role1">Role1</option>
-                <option value="Role2">Role2</option>
-                <option value="Role3">Role3</option>
-                <option value="Role4">Role4</option>
-              </select>
-            </label>
-            <label>
-              <select 
-              name = "Task"
-              value={this.state.Task} 
-              onChange={this.handleChange.bind(this)}>
-                <option value="Task1">Task1</option>
-                <option value="Task2">Task2</option>
-                <option value="Task3">Task3</option>
-                <option value="Task4">Task4</option>
-              </select>
-            </label>
-            <p>
-              <input type="submit" value="Submit" />
-            </p>
+      return (
+        <div className = "container">
+          Add Role to User?
+          <form onSubmit={this.handleSubmit}>
+          <label className="labels">
+            <select name = "role" value={this.state.role}
+            onChange={this.handleChange.bind(this)}>
+              {
+                  roleList.length && roleList.map(role => {
+                      return <option value={role}>{role}</option>
+                  })
+              }
+            </select>
+          </label>
+          <label className="labels">
+            <select name = "task" value={this.state.task} 
+            onChange={this.handleChange.bind(this)}>
+              {
+                  taskList.length && taskList.map(user => {
+                      return <option value={task}>{task}</option>
+                  })
+              }
+            </select>
+          </label>
+          <div className="labels">
+            <Button onClick={(evt) => this.handleSubmit()} className="submitbutton">
+                  Submit
+            </Button>
+          </div>
           </form>
-        </div>
         </div>
       );
     }
