@@ -4,6 +4,15 @@ import { AssignUserToRole, GetUsersAndRoles, GetRolesForUnit, RemoveUserToRole }
 import './assignpage.css';
 import Button from 'react-bootstrap/Button';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+} from './navbarelement';
+import Signout from "./signoutfunction";
 export default class Fassignpage extends React.Component {
 
   constructor(props) {
@@ -66,66 +75,99 @@ export default class Fassignpage extends React.Component {
     console.log(roleList);
 
     return (
-      <div className="master">
-        <div className="heading"> Web Admin Page</div>
-        <div className="row">
-          <div className="App">
-            <table>
-              {
-                users.length && users.map(user => {
-                  return (
-                    <tr> {user.email || ""}
-                      {
-                        user && user.role && user.role.length > 1 && user.role.map(role => {
-                          return <th>{role.name || ""}</th>
-                        })
-                      }
-                    </tr>
-                  )
-                })
-              }
-            </table>
+      <>
+        <Nav>
+          <Bars />
+
+          <NavMenu>
+            <NavLink to='/about' activeStyle>
+              About
+            </NavLink>
+            <NavLink to='/events' activeStyle>
+              Events
+            </NavLink>
+            <NavLink to='/annual' activeStyle>
+              Annual Report
+            </NavLink>
+            <NavLink to='/team' activeStyle>
+              Teams
+            </NavLink>
+            <NavLink to='/blogs' activeStyle>
+              Blogs
+            </NavLink>
+            {/* <NavLink to='/sign-up' activeStyle>
+              Sign Up
+            </NavLink> */}
+            {/* Second Nav */}
+            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+          </NavMenu>
+          <NavBtn>
+            <Signout />
+            {/* <NavBtnLink onClick={this.navigateToLogOut}>Sign out</NavBtnLink> */}
+          </NavBtn>
+        </Nav>
+        <div className="master">
+
+          <div className="heading"> Web Admin Page</div>
+          <div className="row">
+            <div className="App">
+              <table>
+                {
+                  users.length && users.map(user => {
+                    return (
+                      <tr> {user.email || ""}
+                        {
+                          user && user.role && user.role.length > 1 && user.role.map(role => {
+                            return <th>{role.name || ""}</th>
+                          })
+                        }
+                      </tr>
+                    )
+                  })
+                }
+              </table>
+            </div>
+          </div>
+
+          <div className="container">
+            Add Role to User?
+            <form onSubmit={this.handleSubmit}>
+              <label className="labels">
+                <select
+                  name="role"
+                  value={this.state.role}
+                  onChange={this.handleChange.bind(this)}>
+                  {
+                    roleList.length && roleList.map(role => {
+                      return <option value={role}>{role}</option>
+                    })
+                  }
+                </select>
+              </label>
+              <label className="labels">
+                <select
+                  name="user"
+                  value={this.state.user}
+                  onChange={this.handleChange.bind(this)}>
+                  {
+                    userList.length && userList.map(user => {
+                      return <option value={user}>{user}</option>
+                    })
+                  }
+                </select>
+              </label>
+              <div className="labels">
+                <Button onClick={(evt) => this.handleSubmit()} className="submitbutton">
+                  Submit
+                </Button>
+                <Button onClick={(evt) => this.handleRemove()} className="submitbutton">
+                  Remove Role
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
-
-        <div className="container">
-          Add Role to User?
-          <form onSubmit={this.handleSubmit}>
-            <label className="labels">
-              <select
-                name="role"
-                value={this.state.role}
-                onChange={this.handleChange.bind(this)}>
-                {
-                  roleList.length && roleList.map(role => {
-                    return <option value={role}>{role}</option>
-                  })
-                }
-              </select>
-            </label>
-            <label className="labels">
-              <select
-                name="user"
-                value={this.state.user}
-                onChange={this.handleChange.bind(this)}>
-                {
-                  userList.length && userList.map(user => {
-                    return <option value={user}>{user}</option>
-                  })
-                }
-              </select>
-            </label>
-            <div className="labels">
-              <Button onClick={(evt) => this.handleSubmit()} className="submitbutton">
-                Submit
-              </Button>
-              <Button onClick={(evt) => this.handleRemove()} className="submitbutton">
-                Remove Role
-              </Button>
-            </div>
-          </form>
-        </div>
-      </div>
+      </>
 
 
     );
