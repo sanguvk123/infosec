@@ -93,16 +93,18 @@ export const RemoveUserToRole = async (role, user) => {
 
 // Super user adds roles
 export const AddRole = async (type, role) => {
+    let userid = await localStorage.getItem('User_id');
     let AddRoleUrl = "http://localhost:3000/superAdmin/roleAdminUnitAssignment";
-    let res = await axios.post(AddRoleUrl, { adminUnitName: type, roleName: role });
+    let res = await axios.post(AddRoleUrl, { userId: userid, adminUnitName: type, roleName: role });
     return res;
 }
 
 
 // Super user can chooses user to make Web/VoIP/FTP admins.
 export const MakeAdmin = async (user, type) => {
+    let userid = await localStorage.getItem('User_id');
     let MakeAdminUrl = 'http://localhost:3000/superAdmin/userAdminUnitAssignment';
-    let res = await axios.post(MakeAdminUrl, { userName: user, adminUnitName: type });
+    let res = await axios.post(MakeAdminUrl, { userId: userid, userName: user, adminUnitName: type });
     return res;
 }
 
@@ -120,21 +122,24 @@ export const GetRolesForUnit = async (unit) => {
 }
 
 export const AssignTaskToRole = async (role, task) => {
+    let userid = await localStorage.getItem('User_id');
     let assignTaskToRoleUrl = "http://localhost:3000/superAdmin/roleTaskAssignment";
-    let res = await Post(assignTaskToRoleUrl, { roleName: role, taskName: task });
+    let res = await Post(assignTaskToRoleUrl, { userId: userid, roleName: role, taskName: task });
     return res;
 }
 
 
 export const GetRoles = async () => {
+    let userid = await localStorage.getItem('User_id');
     let url = `http://localhost:3000/superAdmin/getRoles`;
-    let res = await axios.post(url);
+    let res = await axios.post(url, { userId: userid });
     return res;
 }
 
 export const GetTasks = async () => {
+    let userid = await localStorage.getItem('User_id');
     let url = `http://localhost:3000/superAdmin/getTasks`;
-    let res = await axios.post(url);
+    let res = await axios.post(url, { userId: userid });
     return res;
 }
 
