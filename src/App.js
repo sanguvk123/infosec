@@ -15,6 +15,7 @@ import Addrole from './pages/Superuserhome/Addrole';
 import Makeadmin from './pages/Superuserhome/Makeadmin';
 import AssignTaskToRole from './pages/Superuserhome/Tasktorole';
 import ErrorOops from './pages/Errorpage/Oops';
+import BasicHome from './pages/Home/Basichome';
 
 function App() {
   let unit = localStorage.getItem('User_unit');
@@ -44,6 +45,12 @@ function App() {
           <RequireAuth>    <Makeadmin /> </RequireAuth>
         } />
         <Route path="/errorpage" element={<ErrorOops />} />
+        <Route path="/assigntasktorole" element={
+          <RequireAuth>   <AssignTaskToRole /> </RequireAuth>
+        } />
+        <Route path="/basichome" element={
+        <RequireAuth>   <BasicHome /> </RequireAuth>
+        } />
       </Routes>
     </BrowserRouter>
   )

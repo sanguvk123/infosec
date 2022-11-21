@@ -128,12 +128,22 @@ export const AssignTaskToRole = async (role, task) => {
 
 export const GetRoles = async () => {
     let url = `http://localhost:3000/superAdmin/getRoles`;
-    let res = await axios.get(url);
+    let res = await axios.post(url);
     return res;
 }
 
 export const GetTasks = async () => {
     let url = `http://localhost:3000/superAdmin/getTasks`;
-    let res = await axios.get(url);
+    let res = await axios.post(url);
     return res;
 }
+
+
+export const GetUserInfo = async (id) => {
+    let url = `http://localhost:3000/user/userInfo/${id}`;
+    let res = await axios.get(url, { params: { id: id } });
+    console.log(res);
+    return res;
+}
+
+
