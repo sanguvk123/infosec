@@ -12,7 +12,8 @@ export default class Fassignpage extends React.Component {
             role: 'Role',
             user: 'User',
             userList: [],
-            roleList: []
+            roleList: [],
+            users:[],
         }
     }
 
@@ -34,20 +35,17 @@ export default class Fassignpage extends React.Component {
           }
       });
       GetRolesForUnit("ftpadmin").then((res) => {
-        console.log('heloo73767637rjirtehjrt6')
-        console.log(res.data);
         if (res && res.data && res.data.users) {
           let foundRoles = res.data.unitRoles;
           let foundRoleslist = foundRoles.map(found => found.name);
-          // let foundUserRoles = foundRoles.map(foundRole => foundRole.role);
           this.setState({ roleList: foundRoleslist });
+          this.setState({ users: res.data.users });
         }
       });
-  }
+    }
   
     render() {
-      let {userList} = this.state;
-      let {roleList} = this.state;
+      let {userList, users, roleList} = this.state;
       console.log(userList);
       console.log(roleList);
 
@@ -55,15 +53,22 @@ export default class Fassignpage extends React.Component {
         <div className="master">
           <div className="heading"> FTP Admin Page</div>
           <div className="row">
-          <div className="column left">
-            <h2>Column 1</h2>
-            {/* roleList.length && roleList.map(role => {
-                return <option value={role}>{role}</option>
-            }) */}
-          </div>
-          <div className="column right">
-            <h2>Column 2</h2>
-            <p>Some text..</p>
+          <div className="App">
+            <table>
+              {
+                users.length && users.map(user => {
+                  return (
+                    <tr> {user.email || ""}
+                      {
+                        user && user.role && user.role.length > 1 && user.role.map(role => {
+                          return <th>{role.name || ""}</th>
+                        })
+                      }
+                    </tr>
+                  )
+                })
+              }
+            </table>
           </div>
           </div>
 

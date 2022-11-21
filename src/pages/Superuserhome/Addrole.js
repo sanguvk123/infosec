@@ -35,9 +35,9 @@ export default class Addrole extends React.Component {
             name = "type"
             value={this.state.type}
             onChange={this.handleChange.bind(this)}>
-              <option value="WebAdmin">Web Admin</option>
-              <option value="VoIPAdmin">VoIPAdmin</option>
-              <option value="FTPAdmin">FTPAdmin</option>
+              <option value="webadmin">Web Admin</option>
+              <option value="voipadmin">VoIPAdmin</option>
+              <option value="ftpadmin">FTPAdmin</option>
             </select>
           </label>
           <label>
