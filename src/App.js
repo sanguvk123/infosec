@@ -55,22 +55,22 @@ function RequireAuth({ children }) {
   let userid = localStorage.getItem('User_id');
   console.log('ekjejkejkjekejkejkejkejekjekkkkkkkkkkkkkkkkkkkkkkk');
   console.log(unit);
-  return userid && unit === 'superadmin' ? children : <Navigate to="/" />;
+  return userid && unit === 'superadmin' ? children : <Navigate to="/errorpage" />;
 }
 function RequireAuthw({ children }) {
   let unit = localStorage.getItem('User_unit');
   let userid = localStorage.getItem('User_id');
-  return userid && unit === 'webadmin' ? children : <Navigate to="/" />;
+  return userid && unit === 'webadmin' ? children : <Navigate to="/errorpage" />;
 }
 function RequireAuthv({ children }) {
   let unit = localStorage.getItem('User_unit');
   let userid = localStorage.getItem('User_id');
-  return userid && unit === 'voipadmin' ? children : <Navigate to="/" />;
+  return userid && unit === 'voipadmin' ? children : <Navigate to="/errorpage" />;
 }
 function RequireAuthf({ children }) {
   let unit = localStorage.getItem('User_unit');
   let userid = localStorage.getItem('User_id');
-  return userid && unit === 'ftpadmin' ? children : <Navigate to="/" />;
+  return userid && unit === 'ftpadmin' ? children : <Navigate to="/errorpage" />;
 }
 
 export default App;
