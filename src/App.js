@@ -16,6 +16,7 @@ import Makeadmin from './pages/Superuserhome/Makeadmin';
 import AssignTaskToRole from './pages/Superuserhome/Tasktorole';
 import ErrorOops from './pages/Errorpage/Oops';
 import BasicHome from './pages/Home/Basichome';
+import Signup from './pages/Home/Signup';
 
 function App() {
   let unit = localStorage.getItem('User_unit');
@@ -49,7 +50,10 @@ function App() {
           <RequireAuth>   <AssignTaskToRole /> </RequireAuth>
         } />
         <Route path="/basichome" element={
-        <RequireAuth>   <BasicHome /> </RequireAuth>
+          <BasicHome />
+        } />
+        <Route path="/signup" element={
+          <Signup />
         } />
       </Routes>
     </BrowserRouter>
