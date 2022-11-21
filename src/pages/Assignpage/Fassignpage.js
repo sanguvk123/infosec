@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AssignUserToRole, GetUsersAndRoles } from "../../api/index";
+import { AssignUserToRole, GetUsersAndRoles, GetRolesForUnit } from "../../api/index";
 import Button from 'react-bootstrap/Button';
 import './assignpage.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
@@ -21,23 +21,25 @@ export default class Fassignpage extends React.Component {
      }
   
     handleSubmit = async () => {
-        alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
         let res = await AssignUserToRole(this.role, this.user);
-    //   event.preventDefault();
+        alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
     }
 
     componentDidMount = () => {
-      let id = localStorage.getItem('user_id');
-      console.log(id);
       GetUsersAndRoles().then((res) => {
           if(res && res.data && res.data.users) {
               let foundUsers = res.data.users;
-              let foundRoles = res.data.roles;
               let foundUserEmails = foundUsers.map(foundUser => foundUser.email);
-              // let foundUserRoles = foundRoles.map(foundRole => foundRole.role);
               this.setState({ userList: foundUserEmails});
           }
       });
+      GetRolesForUnit("1").then((res) => {
+        if(res && res.data && res.data.users) {
+            let foundRoles = res.data.roles;
+            let foundUserRoles = foundRoles.map(foundRole => foundRole.role);
+            this.setState({ roleList: foundUserRoles});
+        }
+    });
   }
   
     render() {
