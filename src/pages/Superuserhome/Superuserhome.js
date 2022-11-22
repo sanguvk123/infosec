@@ -3,7 +3,16 @@ import './Superuserhome.css';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import {
+    Nav,
+    NavLink,
+    Bars,
+    NavMenu,
+    NavBtn,
+  } from '../Assignpage/navbarelement';
+  import Signout from "../Assignpage/signoutfunction";
+
+import {useNavigate } from 'react-router-dom';
 
 function Superuserhome() {
     const navigate = useNavigate();
@@ -41,6 +50,36 @@ function Superuserhome() {
 
     return (
         <>
+        <Nav>
+          <Bars />
+
+          <NavMenu>
+            <NavLink to='/basichome' activeStyle>
+              <b>Home</b>
+            </NavLink>
+            <NavLink to='/events' activeStyle>
+              Events
+            </NavLink>
+            <NavLink to='/annual' activeStyle>
+              Annual Report
+            </NavLink>
+            <NavLink to='/team' activeStyle>
+              Teams
+            </NavLink>
+            <NavLink to='/blogs' activeStyle>
+              Blogs
+            </NavLink>
+            {/* <NavLink to='/sign-up' activeStyle>
+              Sign Up
+            </NavLink> */}
+            {/* Second Nav */}
+            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+          </NavMenu>
+          <NavBtn>
+            <Signout />
+            {/* <NavBtnLink onClick={this.navigateToLogOut}>Sign out</NavBtnLink> */}
+          </NavBtn>
+        </Nav>
             <div className="superhomebuttons">
                 <div className="heading">
                     Super User Home

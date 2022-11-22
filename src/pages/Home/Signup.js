@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SignUp } from "../../api/index";
 
 export default function Signup(props) {

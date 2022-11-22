@@ -3,14 +3,12 @@ import React from "react";
 import { AssignUserToRole, GetUsersAndRoles, GetRolesForUnit, RemoveUserToRole } from "../../api/index";
 import Button from 'react-bootstrap/Button';
 import './assignpage.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
 import {
   Nav,
   NavLink,
   Bars,
   NavMenu,
   NavBtn,
-  NavBtnLink,
 } from './navbarelement';
 import Signout from "./signoutfunction";
 
@@ -112,8 +110,8 @@ export default class Fassignpage extends React.Component {
           <Bars />
 
           <NavMenu>
-            <NavLink to='/about' activeStyle>
-              About
+            <NavLink to='/basichome' activeStyle>
+              Home
             </NavLink>
             <NavLink to='/events' activeStyle>
               Events
