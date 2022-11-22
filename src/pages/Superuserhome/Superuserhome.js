@@ -54,21 +54,13 @@ function Superuserhome() {
           <Bars />
 
           <NavMenu>
-            <NavLink to='/basichome' activeStyle>
+            <NavLink to='/superhome' activeStyle>
               <b>Home</b>
             </NavLink>
-            <NavLink to='/events' activeStyle>
-              Events
-            </NavLink>
-            <NavLink to='/annual' activeStyle>
-              Annual Report
-            </NavLink>
-            <NavLink to='/team' activeStyle>
-              Teams
-            </NavLink>
-            <NavLink to='/blogs' activeStyle>
-              Blogs
-            </NavLink>
+            
+            
+            <div className="welcome">Welcome</div>
+            
             {/* <NavLink to='/sign-up' activeStyle>
               Sign Up
             </NavLink> */}
@@ -85,13 +77,13 @@ function Superuserhome() {
                     Super User Home
                 </div>
                 <Button onClick={navigateToWadmin} className="block">
-                    Log Into Web Admin
+                    Web Admin
                 </Button>{' '}
                 <Button onClick={navigateToVadmin} className="block">
-                    Log Into Voip Admin
+                    Voip Admin
                 </Button>{' '}
                 <Button onClick={navigateToFadmin} className="block">
-                    Log Into FTP Admin
+                    FTP Admin
                 </Button>{' '}
                 <Button onClick={navigateToAddRole} className="block">
                     Add Role

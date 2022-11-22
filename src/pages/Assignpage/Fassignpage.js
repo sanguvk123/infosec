@@ -67,6 +67,8 @@ export default class Fassignpage extends React.Component {
       alert('Role ' + this.state.role + ' is assigned to ' + this.state.user);
     else
       alert('Failure: ' + res.response.data.message === null ? "Reason unknown" : res.response.data.message);
+
+      window.location.reload()
   }
 
   handleRemove = async () => {
@@ -85,6 +87,7 @@ export default class Fassignpage extends React.Component {
       if (res && res.data && res.data.users) {
         let foundUsers = res.data.users;
         let foundUserEmails = foundUsers.map(foundUser => foundUser.email);
+        this.state.user=foundUserEmails.length>0?foundUserEmails[0]:'user';
         this.setState({ userList: foundUserEmails });
       }
     });
@@ -148,7 +151,7 @@ export default class Fassignpage extends React.Component {
                       <tr> {user.email || ""}
                         {
                           user && user.role && user.role.length > 1 && user.role.map(role => {
-                            return <th>{role.name || ""}</th>
+                            return <th>{role.unit==='ftpadmin'?role.name:'' || ""}</th>
                           })
                         }
                       </tr>

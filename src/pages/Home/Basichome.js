@@ -33,9 +33,9 @@ export default class BasicHome extends React.Component {
                 if(res.data.operations) {
                     this.setState({ operations: res.data.operations });
                 }
-                // if(res.data.tasks) {
-                //     this.setState({ tasks: res.data.tasks });
-                // }
+                if(res.data.tasks) {
+                    this.setState({ tasks: res.data.tasks });
+                }
             }
         });
     }
@@ -75,11 +75,14 @@ export default class BasicHome extends React.Component {
           </NavBtn>
         </Nav>
         <div className="contain">
+          <div className="heading">
+          <h1>Welcome to your Dashboard</h1>
+          </div>
             <div className="inner-contain">
                 <h1>You belong to the roles listed below: </h1>
                 {
                     roles.length && roles.map((role) => {
-                        return <>{role.name + ", "}</>
+                        return <>{role==='basic'?'basic, ':role.name + ", "}</>
                     })
                 }
             </div>
@@ -87,7 +90,7 @@ export default class BasicHome extends React.Component {
                 <h1>Operations you can perform : </h1>
                 {
                     operations.length && operations.map((operation) => {
-                        return <>{operation.name + ", "}</>
+                        return <>{operation + ", "}</>
                     })
                 }
             </div>
@@ -95,7 +98,7 @@ export default class BasicHome extends React.Component {
                 <h1>Tasks you can perform : </h1>
                 {
                     tasks.length && tasks.map((task) => {
-                        return <>{task.name}</>
+                        return <>{task  + ", "}</>
                     })
                 }
             </div>

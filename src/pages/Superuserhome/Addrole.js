@@ -17,7 +17,7 @@ export default class Addrole extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            type: 'Type',
+            type: 'webadmin',
             role: 'Role name'
         }
     }

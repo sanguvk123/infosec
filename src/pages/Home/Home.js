@@ -27,14 +27,15 @@ export default function (props) {
           else if (res.data.unit == 'voipadmin')
             navigate('/vassignpage');
           else
-            navigate('/');
+            navigate('/basichome');
 
         }
-        else {
+        else if(!res.data.unit) {
           navigate('/basichome');
 
 
-        }
+        }else
+        navigate('/basichome');
 
 
 

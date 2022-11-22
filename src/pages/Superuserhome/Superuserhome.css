@@ -78,3 +78,7 @@ input[type=submit]:hover {
   .submitbutton{
     padding: 10px;
   }
+
+  .welcome{
+    color: aliceblue;
+  }

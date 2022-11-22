@@ -1,9 +1,16 @@
 import React from "react";
 
-import { AssignPermissionToTask, GetTasks, GetRoles, GetTasks2, GetPermissions } from "../../api/index";
+import { AssignPermissionToTask, GetTasks2, GetPermissions } from "../../api/index";
 import Button from 'react-bootstrap/Button';
 import './Superuserhome.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import {
+    Nav,
+    NavLink,
+    Bars,
+    NavMenu,
+    NavBtn,
+  } from '../Assignpage/navbarelement';
+  import Signout from "../Assignpage/signoutfunction";
 export default class PermissionToTask extends React.Component {
 
     constructor(props) {
@@ -23,6 +30,7 @@ export default class PermissionToTask extends React.Component {
 
     handleSubmit = async () => {
         let res = await AssignPermissionToTask(this.state.task, this.state.permission,);
+        console.log(res);
         alert('Permission ' + this.state.permission + ' is assigned to ' + this.state.task);
     }
 
@@ -41,6 +49,7 @@ export default class PermissionToTask extends React.Component {
             if (res && res.data && res.data.permissions) {
                 let tasks = res.data.permissions;
                 tasks = tasks.map(task => task.name);
+                this.state.permission=tasks.length>0?tasks[0]:'permission';
                 this.setState({ permissionList: tasks });
             }
         })
@@ -51,7 +60,36 @@ export default class PermissionToTask extends React.Component {
 
         return (
             <>
-            helo
+            <Nav>
+          <Bars />
+
+          <NavMenu>
+            <NavLink to='/basichome' activeStyle>
+              Home
+            </NavLink>
+            <NavLink to='/events' activeStyle>
+              Events
+            </NavLink>
+            <NavLink to='/annual' activeStyle>
+              Annual Report
+            </NavLink>
+            <NavLink to='/team' activeStyle>
+              Teams
+            </NavLink>
+            <NavLink to='/blogs' activeStyle>
+              Blogs
+            </NavLink>
+            {/* <NavLink to='/sign-up' activeStyle>
+              Sign Up
+            </NavLink> */}
+            {/* Second Nav */}
+            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+          </NavMenu>
+          <NavBtn>
+            <Signout />
+            {/* <NavBtnLink onClick={this.navigateToLogOut}>Sign out</NavBtnLink> */}
+          </NavBtn>
+        </Nav>
                 <div className="heading"> Assign Persmission to Tasks</div>
                 <div className="master">
                     <div className="user_role">

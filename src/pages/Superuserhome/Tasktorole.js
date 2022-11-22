@@ -3,7 +3,15 @@ import React from "react";
 import { AssignTaskToRole, GetTasks, GetRoles } from "../../api/index";
 import Button from 'react-bootstrap/Button';
 import './Superuserhome.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+} from '../Assignpage/navbarelement';
+import Signout from "../Assignpage/signoutfunction";
 export default class Fassignpage extends React.Component {
 
   constructor(props) {
@@ -23,6 +31,7 @@ export default class Fassignpage extends React.Component {
 
   handleSubmit = async () => {
     let res = await AssignTaskToRole(this.state.role, this.state.task,);
+    console.log(res);
     alert('Task ' + this.state.task + ' is assigned to ' + this.state.role);
   }
 
@@ -47,10 +56,40 @@ export default class Fassignpage extends React.Component {
   }
 
   render() {
-    let { taskList, tasks, roleList, roles } = this.state;
+    let { taskList, roleList, roles } = this.state;
 
     return (
       <>
+      <Nav>
+          <Bars />
+
+          <NavMenu>
+            <NavLink to='/basichome' activeStyle>
+              Home
+            </NavLink>
+            <NavLink to='/events' activeStyle>
+              Events
+            </NavLink>
+            <NavLink to='/annual' activeStyle>
+              Annual Report
+            </NavLink>
+            <NavLink to='/team' activeStyle>
+              Teams
+            </NavLink>
+            <NavLink to='/blogs' activeStyle>
+              Blogs
+            </NavLink>
+            {/* <NavLink to='/sign-up' activeStyle>
+              Sign Up
+            </NavLink> */}
+            {/* Second Nav */}
+            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+          </NavMenu>
+          <NavBtn>
+            <Signout />
+            {/* <NavBtnLink onClick={this.navigateToLogOut}>Sign out</NavBtnLink> */}
+          </NavBtn>
+        </Nav>
         <div className="heading"> Assign Tasks to Role</div>
         <div className="master">
           <div className="user_role">
@@ -81,7 +120,7 @@ export default class Fassignpage extends React.Component {
                 onChange={this.handleChange.bind(this)}>
                 {
                   roleList.length && roleList.map(role => {
-                    return <option value={role}>{role}</option>
+                    return <option value={role}>{role + " -> "}</option>
                   })
                 }
               </select>
@@ -91,7 +130,7 @@ export default class Fassignpage extends React.Component {
                 onChange={this.handleChange.bind(this)}>
                 {
                   taskList.length && taskList.map(task => {
-                    return <option value={task}>{task}</option>
+                    return <option value={task}>{task + ", "}</option>
                   })
                 }
               </select>
