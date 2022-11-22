@@ -3,6 +3,15 @@ import React from "react";
 import { MakeAdmin, GetUsersAndRoles } from "../../api/index";
 import Button from 'react-bootstrap/Button';
 
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+} from '../Assignpage/navbarelement';
+import Signout from "../Assignpage/signoutfunction";
+
 export default class Makeadmin extends React.Component {
 
     constructor(props) {
@@ -20,6 +29,7 @@ export default class Makeadmin extends React.Component {
   
     handleSubmit = async () => {
         let res = await MakeAdmin(this.state.user, this.state.type);
+        console.log(res);
         alert('User ' + this.state.user + ' is made ' + this.state.type + ' admin');
     }
 
@@ -37,6 +47,39 @@ export default class Makeadmin extends React.Component {
     render() {
       let {userList} = this.state;
       return (
+        <>
+        <Nav>
+          <Bars />
+
+          <NavMenu>
+            <NavLink to='/basichome' activeStyle>
+              Home
+            </NavLink>
+            <NavLink to='/events' activeStyle>
+              Events
+            </NavLink>
+            <NavLink to='/annual' activeStyle>
+              Annual Report
+            </NavLink>
+            <NavLink to='/team' activeStyle>
+              Teams
+            </NavLink>
+            <NavLink to='/blogs' activeStyle>
+              Blogs
+            </NavLink>
+            {/* <NavLink to='/sign-up' activeStyle>
+              Sign Up
+            </NavLink> */}
+            {/* Second Nav */}
+            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+          </NavMenu>
+          <NavBtn>
+            <Signout />
+            {/* <NavBtnLink onClick={this.navigateToLogOut}>Sign out</NavBtnLink> */}
+          </NavBtn>
+        </Nav>
+        <div className="contain">
+            <h2>Make an user admin of an unit</h2>
         <form>
           <label>
             <select 
@@ -60,10 +103,12 @@ export default class Makeadmin extends React.Component {
                 }
             </select>
           </label>
-          <Button onClick={(evt) => this.handleSubmit()} variant="primary" size="lg">
+          <Button onClick={(evt) => this.handleSubmit()}>
                 Submit
           </Button>
         </form>
+        </div>
+        </>
       );
     }
   }
