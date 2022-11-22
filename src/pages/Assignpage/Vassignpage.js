@@ -60,6 +60,7 @@ export default class Fassignpage extends React.Component {
       if (res && res.data && res.data.users) {
         let foundRoles = res.data.unitRoles;
         let foundRoleslist = foundRoles.map(found => found.name);
+        this.state.role=foundRoleslist.length>0?foundRoleslist[0]:'Role';
         this.setState({ roleList: foundRoleslist });
         this.setState({ users: res.data.users });
       }

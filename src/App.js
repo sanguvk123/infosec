@@ -17,7 +17,7 @@ import AssignTaskToRole from './pages/Superuserhome/Tasktorole';
 import ErrorOops from './pages/Errorpage/Oops';
 import BasicHome from './pages/Home/Basichome';
 import Signup from './pages/Home/Signup';
-import { AssignPermissionToTask } from './api';
+import PermissionToTask from './pages/Superuserhome/Permissiontotask';
 
 function App() {
   let unit = localStorage.getItem('User_unit');
@@ -51,7 +51,7 @@ function App() {
           <RequireAuth>   <AssignTaskToRole /> </RequireAuth>
         } />
         <Route path="/assignpermissiontotask" element={
-          <RequireAuth>   <AssignPermissionToTask /> </RequireAuth>
+          <RequireAuth>   <PermissionToTask /> </RequireAuth>
         } />
         <Route path="/basichome" element={
           <BasicHome />

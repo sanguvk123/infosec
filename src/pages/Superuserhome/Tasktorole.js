@@ -40,6 +40,7 @@ export default class Fassignpage extends React.Component {
       if (res && res.data && res.data.tasks) {
         let tasks = res.data.tasks;
         tasks = tasks.map(task => task.name);
+        this.state.task=tasks.length>0?tasks[0]:'task';
         this.setState({ taskList: tasks });
       }
     })

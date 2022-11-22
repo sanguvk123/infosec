@@ -39,6 +39,7 @@ export default class Makeadmin extends React.Component {
             if(res && res.data && res.data.users) {
                 let foundUsers = res.data.users;
                 let foundUserEmails = foundUsers.map(foundUser => foundUser.email);
+                this.state.user=foundUserEmails.length>0?foundUserEmails[0]:'User';
                 this.setState({ userList: foundUserEmails });
             }
         });

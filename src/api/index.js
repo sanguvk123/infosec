@@ -132,6 +132,8 @@ export const GetTasks2 = async () => {
     console.log('gettask222222222222222222222222');
     let url = `http://localhost:3000/superAdmin/getTasks`;
     let res = await axios.post(url, { userId: userid });
+    console.log('ggggggggujuuuuuuuuuuuuu');
+    console.log(res);
     return res;
 }
 
@@ -148,6 +150,8 @@ export const AssignPermissionToTask = async (task, perm) => {
     console.log('assignpermytotaskkkkkkkkkkkkkkkkkkkkkk');
     let assignpermissiontotask = "http://localhost:3000/superAdmin/taskPermissionAssignment";
     let res = await Post(assignpermissiontotask, { userId: userid, taskName: task, permissionName: perm });
+    console.log('submittttttttttttttttttt');
+    console.log(res);
     return res;
 }
 
