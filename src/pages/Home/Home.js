@@ -31,7 +31,7 @@ export default function (props) {
 
         }
         else {
-          navigate('/errorpage');
+          navigate('/basichome');
 
 
         }

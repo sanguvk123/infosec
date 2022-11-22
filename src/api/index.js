@@ -127,7 +127,29 @@ export const AssignTaskToRole = async (role, task) => {
     let res = await Post(assignTaskToRoleUrl, { userId: userid, roleName: role, taskName: task });
     return res;
 }
+export const GetTasks2 = async () => {
+    let userid = await localStorage.getItem('User_id');
+    console.log('gettask222222222222222222222222');
+    let url = `http://localhost:3000/superAdmin/getTasks`;
+    let res = await axios.post(url, { userId: userid });
+    return res;
+}
 
+export const GetPermissions = async () => {
+    let userid = await localStorage.getItem('User_id');
+    console.log('getpermissionsssssssssssssssssssssssssssssssss');
+    let url = `http://localhost:3000/superAdmin/getPermissions`;
+    let res = await axios.post(url, { userId: userid });
+    return res;
+}
+
+export const AssignPermissionToTask = async (task, perm) => {
+    let userid = await localStorage.getItem('User_id');
+    console.log('assignpermytotaskkkkkkkkkkkkkkkkkkkkkk');
+    let assignpermissiontotask = "http://localhost:3000/superAdmin/taskPermissionAssignment";
+    let res = await Post(assignpermissiontotask, { userId: userid, taskName: task, permissionName: perm });
+    return res;
+}
 
 export const GetRoles = async () => {
     let userid = await localStorage.getItem('User_id');
