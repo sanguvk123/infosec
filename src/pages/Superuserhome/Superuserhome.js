@@ -59,7 +59,6 @@ function Superuserhome() {
             </NavLink>
             
             
-            <div className="welcome">Welcome</div>
             
             {/* <NavLink to='/sign-up' activeStyle>
               Sign Up
